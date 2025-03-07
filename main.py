@@ -3,7 +3,7 @@ import pygame
 # we're going to use a wildcard import for convenience. 
 # In a larger project, you'd want to import only the constants you need
 from constants import *
-
+from player import Player
 def main():
     pygame.init()
     print("Starting Asteroids!")
@@ -26,6 +26,8 @@ def main():
                 return
         
         screen.fill("black")
+        player1 = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+        player1.draw(screen)
         pygame.display.flip()
         
         # Control the frame rate
