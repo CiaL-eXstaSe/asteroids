@@ -19,6 +19,8 @@ def main():
     
     # Game loop
     running = True
+    player1 = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)  # Create player outside the loop
+    
     while running:
         # Handle events
         for event in pygame.event.get():
@@ -26,7 +28,7 @@ def main():
                 return
         
         screen.fill("black")
-        player1 = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+        player1.update(dt)  # Update player position before drawing
         player1.draw(screen)
         pygame.display.flip()
         
