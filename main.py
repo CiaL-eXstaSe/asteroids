@@ -19,7 +19,16 @@ def main():
     
     # Game loop
     running = True
-    player1 = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)  # Create player outside the loop
+
+    # Create Groups
+    updateables = pygame.sprite.Group()
+    drawables = pygame.sprite.Group()
+
+    # Setting Groups as containers for the player
+    Player.containers = (updateables, drawables)
+    
+    # Create player AFTER setting up containers
+    player1 = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
     
     while running:
         # Handle events
@@ -28,8 +37,12 @@ def main():
                 return
         
         screen.fill("black")
-        player1.update(dt)  # Update player position before drawing
-        player1.draw(screen)
+        
+        updateables.update(dt)  # Update player position before drawing
+
+        for drawable in drawables:
+            drawable.draw(screen)
+            
         pygame.display.flip()
         
         # Control the frame rate
