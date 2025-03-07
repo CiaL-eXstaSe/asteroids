@@ -13,6 +13,10 @@ def main():
     # Create the screen
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     
+    # Create a clock object to control FPS
+    clock = pygame.time.Clock()
+    dt = 0  # Delta time between frames
+    
     running = True
     while running:
         # Handle events
@@ -22,9 +26,9 @@ def main():
         
         screen.fill("black")
         pygame.display.flip()
-    
-    # Quit Pygame properly
-    pygame.quit()
+        
+        # Control the frame rate
+        dt = clock.tick(60) / 1000.0  # Convert milliseconds to seconds
 
 if __name__ == "__main__":
     main()
