@@ -17,6 +17,7 @@ def main():
     clock = pygame.time.Clock()
     dt = 0  # Delta time between frames
     
+    # Game loop
     running = True
     while running:
         # Handle events
