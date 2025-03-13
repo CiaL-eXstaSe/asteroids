@@ -1,14 +1,11 @@
 import pygame
-# Because this is a smaller project, and we don't risk conflicting import names, 
-# we're going to use a wildcard import for convenience. 
-# In a larger project, you'd want to import only the constants you need
 from constants import *
 from player import Player
+from asteroidfield import AsteroidField
+from asteroid import Asteroid
+
 def main():
     pygame.init()
-    print("Starting Asteroids!")
-    print(f"Screen width: {SCREEN_WIDTH}")
-    print(f"Screen height: {SCREEN_HEIGHT}")
     
     # Create the screen
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -23,6 +20,12 @@ def main():
     # Create Groups
     updateables = pygame.sprite.Group()
     drawables = pygame.sprite.Group()
+    asteroids = pygame.sprite.Group()
+
+    # Setting Groups as containers for the asteroids
+    Asteroid.containers = (asteroids, updateables, drawables)
+    AsteroidField.containers = updateables
+    asteroidField = AsteroidField()
 
     # Setting Groups as containers for the player
     Player.containers = (updateables, drawables)
