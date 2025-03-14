@@ -54,6 +54,12 @@ def main():
                 print("Game Over!")
                 running = False
 
+            # Check for collisions between shots and asteroids
+            for shot in shots:
+                if asteroid.check_collision(shot):
+                    shot.kill()
+                    asteroid.split()
+
         for drawable in drawables:
             drawable.draw(screen)
             
